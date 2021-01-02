@@ -5,7 +5,7 @@
 <helpset version="2.0">
 
 	<!-- title -->
-	<title>swing-ui-template Help</title>
+	<title>greekchareditor Help</title>
 
 	<!-- maps -->
 	<maps>
@@ -48,7 +48,7 @@
 		<name>main window</name>
 		<size width="700" height="400" />
 		<location x="200" y="200" />
-		<title>swing-ui-template - Online</title>
+		<title>greekchareditor - Online</title>
 		<image>toplevelfolder</image>
 		<toolbar>
 			<helpaction>javax.help.BackAction</helpaction>
@@ -65,7 +65,7 @@
 		<name>main</name>
 		<size width="400" height="400" />
 		<location x="200" y="200" />
-		<title>swing-ui-template - Online</title>
+		<title>greekchareditor - Online</title>
 	</presentation>
 
 </helpset>

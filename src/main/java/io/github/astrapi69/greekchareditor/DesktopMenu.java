@@ -18,7 +18,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.swinguitemplate;
+package io.github.astrapi69.greekchareditor;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -41,7 +41,6 @@ import de.alpharogroup.layout.ScreenSizeExtensions;
 import de.alpharogroup.swing.actions.ExitApplicationAction;
 import de.alpharogroup.swing.actions.ToggleFullScreenAction;
 import de.alpharogroup.swing.base.BaseDesktopMenu;
-import de.alpharogroup.swing.menu.MenuExtensions;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 

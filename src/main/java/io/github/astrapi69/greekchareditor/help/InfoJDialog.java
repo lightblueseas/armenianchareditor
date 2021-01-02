@@ -18,7 +18,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.swinguitemplate.help;
+package io.github.astrapi69.greekchareditor.help;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -32,7 +32,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import de.alpharogroup.actions.DisposeWindowAction;
-import io.github.astrapi69.swinguitemplate.Messages;
+import io.github.astrapi69.greekchareditor.Messages;
 
 /**
  * The Class InfoJDialog.

@@ -18,7 +18,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.swinguitemplate;
+package io.github.astrapi69.greekchareditor;
 
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -143,7 +143,7 @@ public class SpringBootSwingApplication extends ApplicationFrame<ApplicationMode
 	protected File newConfigurationDirectory(final @NonNull String parent,
 		final @NonNull String child)
 	{
-		String configurationDirectoryName = "swing-ui-template";
+		String configurationDirectoryName = "greekchareditor";
 		File applicationConfigurationDirectory = new File(
 			super.newConfigurationDirectory(parent, child), configurationDirectoryName);
 		if (!applicationConfigurationDirectory.exists())

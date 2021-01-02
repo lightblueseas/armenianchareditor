@@ -4,4 +4,4 @@ Created-By: Apache Maven
 Built-By: astrapi69
 Build-Jdk: 1.6.0_16
 Package: de.alpharogroup.mystic.crypt
-Main-Class: io.github.astrapi69.swinguitemplate.SpringBootSwingApplication
+Main-Class: io.github.astrapi69.greekchareditor.SpringBootSwingApplication
