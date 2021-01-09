@@ -27,6 +27,7 @@ import gr.frame.events.NewFileAction;
 import gr.frame.events.OpenFileAction;
 import gr.frame.events.SaveFileAction;
 import gr.frame.util.Constants;
+import lombok.Getter;
 
 import java.awt.BorderLayout;
 import java.awt.Event;
@@ -61,8 +62,9 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+@Getter
 public class MainFrame extends JFrame {
-	/**     */
+
 	private static final long serialVersionUID = -8104731925219304594L;
 
 	public static final String TITLE = Messages
@@ -75,174 +77,170 @@ public class MainFrame extends JFrame {
 			Messages.getString("TransformerJFrame.column.greek"), Messages.getString("TransformerJFrame.column.latin"), Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7 }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	// JTextAreas and JTable
-	private JTextArea jtaPreview = null;
+	private JTextArea jtaPreview;
 
-	/**     */
-	private JTextArea jtaHtmlEntitys = null;
 
-	/**     */
-	private JTextArea jtaUnicode = null;
+	private JTextArea jtaHtmlEntitys;
 
-	public JTextArea getJtaUnicode() {
-		return jtaUnicode;
-	}
 
-	/**     */
-	private JTextArea jtaIso8859_7 = null;
+	private JTextArea jtaUnicode;
 
-	/**     */
-	private JTextArea jtaInput = null;
 
-	/**     */
-	private JTabbedPane jtpOutput = null;
+	private JTextArea jtaIso8859_7;
 
-	/**     */
-	private JPanel panelJTAHtmlEntitys = null;
 
-	/**     */
-	private JPanel panelJTAUnicode = null;
+	private JTextArea jtaInput;
 
-	/**     */
-	private JPanel panelJTAIso8859_7 = null;
 
-	/**     */
-	private JTable jTableAlphabet = null;
+	private JTabbedPane jtpOutput;
+
+
+	private JPanel panelJTAHtmlEntitys;
+
+
+	private JPanel panelJTAUnicode;
+
+
+	private JPanel panelJTAIso8859_7;
+
+
+	private JTable jTableAlphabet;
 
 	// JLabels
-	/**     */
-	private JLabel labelInput = null;
 
-	/**     */
-	private JLabel labelHtmlEntitys = null;
-	/**     */
-	private JLabel labelUnicode = null;
+	private JLabel labelInput;
 
-	/**     */
-	private JLabel labelIso8859_7 = null;
 
-	/**     */
-	private JLabel labelPreview = null;
+	private JLabel labelHtmlEntitys;
 
-	/**     */
-	private JLabel labelAlphabet = null;
+	private JLabel labelUnicode;
 
-	/**     */
-	private JLabel labelPlaceholder = null;
+
+	private JLabel labelIso8859_7;
+
+
+	private JLabel labelPreview;
+
+
+	private JLabel labelAlphabet;
+
+
+	private JLabel labelPlaceholder;
 
 	// JScrollPane
-	/**     */
-	private JScrollPane jscrollPaneTableAlphabet = null;
 
-	/**     */
-	private JScrollPane jscrollPanejtaInput = null;
+	private JScrollPane jscrollPaneTableAlphabet;
 
-	/**     */
-	private JScrollPane jscrollPanejtaPreview = null;
 
-	/**     */
-	private JScrollPane jscrollPanejtaHtmlEntitys = null;
+	private JScrollPane jscrollPanejtaInput;
 
-	/**     */
-	private JScrollPane jscrollPanejtaUnicode= null;
 
-	/**     */
-	private JScrollPane jscrollPanejtaIso8859_7 = null;
+	private JScrollPane jscrollPanejtaPreview;
+
+
+	private JScrollPane jscrollPanejtaHtmlEntitys;
+
+
+	private JScrollPane jscrollPanejtaUnicode;
+
+
+	private JScrollPane jscrollPanejtaIso8859_7;
 
 	// Insets
-	/**     */
-	private Insets oneInsent = null;
 
-	/**     */
-	private Insets twoInsent = null;
+	private Insets oneInsent;
+
+
+	private Insets twoInsent;
 
 	// JMenuBar and JMenus
-	/**     */
-	private JMenuBar menubar = null;
 
-	/**     */
-	private JMenu menuFile = null;
+	private JMenuBar menubar;
 
-	/**     */
-	private JMenu menuEdit = null;
 
-	/**     */
-	private JMenu menuLookAndFell = null;
+	private JMenu menuFile;
 
-	/**     */
-	private JMenu menuHelp = null;
+
+	private JMenu menuEdit;
+
+
+	private JMenu menuLookAndFell;
+
+
+	private JMenu menuHelp;
 
 	// File-MenuItems
-	/**     */
-	private JMenuItem mifNew = null;
 
-	/**     */
-	private JMenuItem mifOpen = null;
+	private JMenuItem mifNew;
 
-	/**     */
-	private JMenuItem mifSave = null;
 
-	/**     */
-	private JMenuItem mifSaveAs = null;
+	private JMenuItem mifOpen;
 
-	/**     */
-	private JMenuItem mifClose = null;
+
+	private JMenuItem mifSave;
+
+
+	private JMenuItem mifSaveAs;
+
+
+	private JMenuItem mifClose;
 
 	// Look and Feel-MenuItems
 	/**   */
-	private JMenuItem milafMetal = null;
+	private JMenuItem milafMetal;
 
 	/**   */
-	private JMenuItem milafMotiv = null;
+	private JMenuItem milafMotiv;
 
 	/**   */
-	private JMenuItem milafWindows = null;
+	private JMenuItem milafWindows;
 
 	// Help-MenuItems
-	/**     */
-	private JMenuItem mihHelpContent = null;
 
-	/**     */
-	private JMenuItem mihLicence = null;
+	private JMenuItem mihHelpContent;
 
-	/**     */
-	private JMenuItem mihInfo = null;
+
+	private JMenuItem mihLicence;
+
+
+	private JMenuItem mihInfo;
 
 	// Buttons
-	/**     */
-	private JButton jbutInputTATranform = null;
 
-	/**     */
-	private JButton jbutInputTACopyHtmlEntitys2Clipboard = null;
+	private JButton jbutInputTATranform;
 
-	/**     */
-	private JButton jbutInputTACopyIso_8859_7_ToClipboard = null;
-	/**     */
-	private JButton jbutInputTACopyIso_GreekChars_ToClipboard = null;
 
-	/**     */
-	private JButton jbutInputTAClear = null;
+	private JButton jbutInputTACopyHtmlEntitys2Clipboard;
 
-	/**     */
-	private JButton jbutPreviewTATransform = null;
 
-	/**     */
-	private JButton jbutHtmlEntitysTATransform = null;
+	private JButton jbutInputTACopyIso_8859_7_ToClipboard;
 
-	/**     */
-	private JButton jbutUnicodeTATransform = null;
+	private JButton jbutInputTACopyIso_GreekChars_ToClipboard;
+
+
+	private JButton jbutInputTAClear;
+
+
+	private JButton jbutPreviewTATransform;
+
+
+	private JButton jbutHtmlEntitysTATransform;
+
+
+	private JButton jbutUnicodeTATransform;
 
 	public JButton getJbutUnicodeTATransform() {
 		return jbutUnicodeTATransform;
 	}
 
-	/**     */
-	private JButton jbutIso8859_7TATransform = null;
 
-	/**     */
-	private CloseWindow closeWindow = null;
+	private JButton jbutIso8859_7TATransform;
 
-	/**     */
-	private JFileChooser jfileChooser = null;
+
+	private CloseWindow closeWindow;
+
+
+	private JFileChooser jfileChooser;
 
 	private Window helpWindow;
 
@@ -299,50 +297,33 @@ public class MainFrame extends JFrame {
 		createLayout();
 	}
 
-	private void createJPanels() {
-
-		JPanel jpanelLabelButtonHtmlEntitys = new JPanel();
+	private JPanel newLabelWithButtonPanel(JLabel label, JButton button) {
+		JPanel panel = new JPanel();
 		BoxLayout boxLayoutHtmlEntitys = new BoxLayout(
-				jpanelLabelButtonHtmlEntitys, BoxLayout.X_AXIS);
-		jpanelLabelButtonHtmlEntitys.setLayout(boxLayoutHtmlEntitys);
-		jpanelLabelButtonHtmlEntitys.add(labelHtmlEntitys);
-		jpanelLabelButtonHtmlEntitys.add(jbutHtmlEntitysTATransform);
+				panel, BoxLayout.X_AXIS);
+		panel.setLayout(boxLayoutHtmlEntitys);
+		panel.add(label);
+		panel.add(button);
+		return panel;
+	}
 
-		panelJTAHtmlEntitys = new JPanel();
-		panelJTAHtmlEntitys.setLayout(new BorderLayout());
-		panelJTAHtmlEntitys.add(jpanelLabelButtonHtmlEntitys,
-				BorderLayout.NORTH);
-		panelJTAHtmlEntitys.add(jscrollPanejtaHtmlEntitys, BorderLayout.CENTER);
+	private JPanel newPanelWithScrollPane(JPanel labelWithButtonPanel) {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.add(labelWithButtonPanel,	BorderLayout.NORTH);
+		panel.add(jscrollPanejtaHtmlEntitys, BorderLayout.CENTER);
+		return panel;
+	}
 
-		JPanel jpanelLabelButtonUnicode = new JPanel();
-		BoxLayout boxLayoutUnicode = new BoxLayout(
-				jpanelLabelButtonUnicode, BoxLayout.X_AXIS);
-		jpanelLabelButtonUnicode.setLayout(boxLayoutUnicode);
-		jpanelLabelButtonUnicode.add(labelUnicode);
-		jpanelLabelButtonUnicode.add(jbutUnicodeTATransform);
+	private void createJPanels() {
+		panelJTAHtmlEntitys = newPanelWithScrollPane(
+				newLabelWithButtonPanel(labelHtmlEntitys, jbutHtmlEntitysTATransform));
 
-		panelJTAUnicode = new JPanel();
-		panelJTAUnicode.setLayout(new BorderLayout());
-		panelJTAUnicode.add(jpanelLabelButtonUnicode,
-				BorderLayout.NORTH);
-		panelJTAUnicode.add(jscrollPanejtaUnicode, BorderLayout.CENTER);
+		panelJTAUnicode = newPanelWithScrollPane(
+				newLabelWithButtonPanel(labelUnicode, jbutUnicodeTATransform));
 
-
-
-		JPanel jpanelLabelButtonIso8859_7 = new JPanel();
-		BoxLayout boxLayoutIso8859_7 = new BoxLayout(
-				jpanelLabelButtonIso8859_7, BoxLayout.X_AXIS);
-		jpanelLabelButtonIso8859_7.setLayout(boxLayoutIso8859_7);
-		jpanelLabelButtonIso8859_7.add(labelIso8859_7);
-		jpanelLabelButtonIso8859_7.add(jbutIso8859_7TATransform);
-
-		panelJTAIso8859_7 = new JPanel();
-		panelJTAIso8859_7.setLayout(new BorderLayout());
-		panelJTAIso8859_7.add(jpanelLabelButtonIso8859_7, BorderLayout.NORTH);
-		panelJTAIso8859_7.add(jscrollPanejtaIso8859_7, BorderLayout.CENTER);
-
-
-
+		panelJTAIso8859_7 = newPanelWithScrollPane(
+				newLabelWithButtonPanel(labelIso8859_7, jbutIso8859_7TATransform));
 	}
 
 	private void createJTabbedPane() {
@@ -356,18 +337,11 @@ public class MainFrame extends JFrame {
 				Messages.getString("TransformerJFrame.unicode"), panelJTAUnicode); //$NON-NLS-1$
 	}
 
-	/**
-	 *
-	 */
 	private void createAllInsets() {
 		oneInsent = new Insets(1, 1, 1, 1);
 		twoInsent = new Insets(2, 2, 2, 2);
-
 	}
 
-	/**
-	 *
-	 */
 	private void createLayout() {
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -568,54 +542,8 @@ public class MainFrame extends JFrame {
 		gbc.ipady = 0;
 		gbl.setConstraints(jtpOutput, gbc);
 		getContentPane().add(jtpOutput);
-
-		// gbc.anchor = GridBagConstraints.NORTHWEST;
-		// gbc.fill = GridBagConstraints.BOTH;
-		// gbc.insets = twoInsent;
-		// gbc.gridx = 2;
-		// gbc.gridy = 8;
-		// gbc.gridwidth = 1;
-		// gbc.gridheight = 1;
-		// gbc.weighty = 0;
-		// gbc.weightx = 0;
-		// gbc.ipadx = 0;
-		// gbc.ipady = 0;
-		// gbl.setConstraints(labelHtmlEntitys, gbc);
-		// getContentPane().add(labelHtmlEntitys);
-		//
-		// gbc.anchor = GridBagConstraints.NORTHWEST;
-		// gbc.fill = GridBagConstraints.BOTH;
-		// gbc.insets = twoInsent;
-		// gbc.gridx = 3;
-		// gbc.gridy = 8;
-		// gbc.gridwidth = 1;
-		// gbc.gridheight = 1;
-		// gbc.weighty = 0;
-		// gbc.weightx = 0;
-		// gbc.ipadx = 0;
-		// gbc.ipady = 0;
-		// gbl.setConstraints(jbutHtmlEntitysTATransform, gbc);
-		// getContentPane().add(jbutHtmlEntitysTATransform);
-		//
-		// gbc.anchor = GridBagConstraints.NORTHWEST;
-		// gbc.fill = GridBagConstraints.BOTH;
-		// gbc.insets = twoInsent;
-		// gbc.gridx = 2;
-		// gbc.gridy = 10;
-		// gbc.gridwidth = 12;
-		// gbc.gridheight = 2;
-		// gbc.weighty = 100;
-		// gbc.weightx = 100;
-		// gbc.ipadx = 0;
-		// gbc.ipady = 0;
-		// gbl.setConstraints(jscrollPanejtaHtmlEntitys, gbc);
-		// getContentPane().add(jscrollPanejtaHtmlEntitys);
-
 	}
 
-	/**
-	 *
-	 */
 	private void createAllButtons() {
 		// Buttons
 		jbutPreviewTATransform = new JButton(Messages
@@ -685,9 +613,6 @@ public class MainFrame extends JFrame {
 
 	}
 
-	/**
-	 *
-	 */
 	private void createAllJscrollPanes() {
 		// JscrollPanes
 		jscrollPaneTableAlphabet = new JScrollPane(jTableAlphabet);
@@ -698,9 +623,6 @@ public class MainFrame extends JFrame {
 		jscrollPanejtaInput = new JScrollPane(jtaInput);
 	}
 
-	/**
-	 *
-	 */
 	private void createAllJTextAreas() {
 		// JTextArea preview:
 		jtaPreview = new JTextArea(5, 50);
@@ -734,16 +656,10 @@ public class MainFrame extends JFrame {
 
 	}
 
-	/**
-	 *
-	 */
 	private void createJTable() {
 		jTableAlphabet = new JTable(GreekAlphabet.greekAlphabet, columnNames);
 	}
 
-	/**
-	 *
-	 */
 	private void createAllJLabels() {
 		labelAlphabet = new JLabel(Messages
 				.getString("TransformerJFrame.label.alphabet.table")); //$NON-NLS-1$
@@ -761,21 +677,6 @@ public class MainFrame extends JFrame {
 				.getString("TransformerJFrame.label.preview")); //$NON-NLS-1$
 	}
 
-	// private void setColumnWidth() {
-	// TableColumn column = null;
-	// int columncount = jTableAlphabet.getColumnCount();
-	// for (int i = 0; i < columncount; i++) {
-	// column = jTableAlphabet.getColumnModel().getColumn(i);
-	// String columnname = jTableAlphabet.getColumnName(i);
-	// System.out.println(columnname);
-	// if (columnname.equals("unicode")) {
-	// column.setMaxWidth(50);
-	// } else {
-	// column.setMaxWidth(40);
-	// }
-	// }
-	// }
-
 	private void createMenubar() {
 		menubar = new JMenuBar();
 		createFileMenu();
@@ -788,25 +689,25 @@ public class MainFrame extends JFrame {
 		// Neu
 		mifNew = new JMenuItem(Messages
 				.getString("TransformerJFrame.menu.item.new"), 'n'); //$NON-NLS-1$
-		setCtrlAccelerator(mifNew, 'N');
+		MenuExtensions.setCtrlAccelerator(mifNew, 'N');
 		mifNew.addActionListener(new NewFileAction("NewFileAction"));
 		menuFile.add(mifNew);
 		// Oeffnen
 		mifOpen = new JMenuItem(Messages
 				.getString("TransformerJFrame.menu.item.open"), 'o'); //$NON-NLS-1$
-		setCtrlAccelerator(mifOpen, 'O');
+		MenuExtensions.setCtrlAccelerator(mifOpen, 'O');
 		mifOpen.addActionListener(new OpenFileAction("OpenFileAction"));
 		menuFile.add(mifOpen);
 		// Speichern
 		mifSave = new JMenuItem(Messages
 				.getString("TransformerJFrame.menu.item.save"), 's'); //$NON-NLS-1$
-		setCtrlAccelerator(mifSave, 'S');
+		MenuExtensions.setCtrlAccelerator(mifSave, 'S');
 		mifSave.addActionListener(new SaveFileAction(Constants.SAVE));
 		menuFile.add(mifSave);
 		// Speichern unter
 		mifSaveAs = new JMenuItem(Messages
 				.getString("TransformerJFrame.menu.item.saveas"), 'u'); //$NON-NLS-1$
-		setCtrlAccelerator(mifSaveAs, 'U');
+		MenuExtensions.setCtrlAccelerator(mifSaveAs, 'U');
 		mifSaveAs.addActionListener(new SaveFileAction(Constants.SAVE_AS));
 		menuFile.add(mifSaveAs);
 		// Separator
@@ -814,7 +715,7 @@ public class MainFrame extends JFrame {
 		// Beenden
 		mifClose = new JMenuItem(Messages
 				.getString("TransformerJFrame.menu.item.exit"), 'e'); //$NON-NLS-1$
-		setCtrlAccelerator(mifClose, 'E');
+		MenuExtensions.setCtrlAccelerator(mifClose, 'E');
 		mifClose.addActionListener(new ExitApplicationAction("ExitApplicationAction"));
 		menuFile.add(mifClose);
 		// Look and Feel JMenuItems
@@ -822,21 +723,21 @@ public class MainFrame extends JFrame {
 		milafMetal = new JMenuItem(
 				Messages
 						.getString("TransformerJFrame.menu.item.lookandfeel.metal"), 'm'); //$NON-NLS-1$
-		setCtrlAccelerator(milafMetal, 'M');
+		MenuExtensions.setCtrlAccelerator(milafMetal, 'M');
 		milafMetal.addActionListener(new LookAndFeelMetalAction("LookAndFeelMetalAction", this));
 		menuLookAndFell.add(milafMetal);
 		// Motif
 		milafMotiv = new JMenuItem(
 				Messages
 						.getString("TransformerJFrame.menu.item.lookandfeel.motif"), 't'); //$NON-NLS-1$
-		setCtrlAccelerator(milafMotiv, 'T');
+		MenuExtensions.setCtrlAccelerator(milafMotiv, 'T');
 		milafMotiv.addActionListener(new LookAndFeelMotifAction("LookAndFeelMotifAction", this));
 		menuLookAndFell.add(milafMotiv);
 		// Windows
 		milafWindows = new JMenuItem(
 				Messages
 						.getString("TransformerJFrame.menu.item.lookandfeel.windows"), 'd'); //$NON-NLS-1$
-		setCtrlAccelerator(milafWindows, 'W');
+		MenuExtensions.setCtrlAccelerator(milafWindows, 'W');
 		milafWindows.addActionListener(new LookAndFeelWindowsAction("LookAndFeelWindowsAction", this));
 		menuLookAndFell.add(milafWindows);
 
@@ -938,155 +839,6 @@ public class MainFrame extends JFrame {
 		menuEdit = new JMenu(Messages
 				.getString("TransformerJFrame.menu.item.edit")); //$NON-NLS-1$
 		menuEdit.setMnemonic('B');
-	}
-
-	private void setCtrlAccelerator(JMenuItem mi, char acc) {
-		KeyStroke ks = KeyStroke.getKeyStroke(acc, Event.CTRL_MASK);
-		mi.setAccelerator(ks);
-	}
-
-	/**
-	 * @return Returns the jtaInput.
-	 */
-	public JTextArea getJtaInput() {
-		return jtaInput;
-	}
-
-	/**
-	 * @return Returns the jtaPreview.
-	 */
-	public JTextArea getJtaPreview() {
-		return jtaPreview;
-	}
-
-	/**
-	 * @return Returns the jtaUnicode.
-	 */
-	public JTextArea getJtaHtmlEntitys() {
-		return jtaHtmlEntitys;
-	}
-
-	/**
-	 * @return Returns the jbutInputTACopy2Clipboard.
-	 */
-	public JButton getJbutInputTACopyHtmlEntitys2Clipboard() {
-		return jbutInputTACopyHtmlEntitys2Clipboard;
-	}
-
-	/**
-	 * @return Returns the jbutInputTATranform.
-	 */
-	public JButton getJbutInputTATranform() {
-		return jbutInputTATranform;
-	}
-
-	public JButton getJbutInputTACopyIso_GreekChars_ToClipboard() {
-		return jbutInputTACopyIso_GreekChars_ToClipboard;
-	}
-
-	/**
-	 * @return Returns the jbutInputTAClear.
-	 */
-	public JButton getJbutInputTAClear() {
-		return jbutInputTAClear;
-	}
-
-	/**
-	 * @return Returns the mifClose.
-	 */
-	public JMenuItem getMifClose() {
-		return mifClose;
-	}
-
-	/**
-	 * @return Returns the mifNew.
-	 */
-	public JMenuItem getMifNew() {
-		return mifNew;
-	}
-
-	/**
-	 * @return Returns the mifOpen.
-	 */
-	public JMenuItem getMifOpen() {
-		return mifOpen;
-	}
-
-	/**
-	 * @return Returns the mifSave.
-	 */
-	public JMenuItem getMifSave() {
-		return mifSave;
-	}
-
-	/**
-	 * @return Returns the mifSaveIn.
-	 */
-	public JMenuItem getMifSaveAs() {
-		return mifSaveAs;
-	}
-
-	/**
-	 * @return Returns the mihHelpContent.
-	 */
-	public JMenuItem getMihHelpContent() {
-		return mihHelpContent;
-	}
-
-	/**
-	 * @return Returns the mihInfo.
-	 */
-	public JMenuItem getMihInfo() {
-		return mihInfo;
-	}
-
-	/**
-	 * @return Returns the milafMetal.
-	 */
-	public JMenuItem getMilafMetal() {
-		return milafMetal;
-	}
-
-	/**
-	 * @return Returns the milafMotiv.
-	 */
-	public JMenuItem getMilafMotiv() {
-		return milafMotiv;
-	}
-
-	/**
-	 * @return Returns the milafWindows.
-	 */
-	public JMenuItem getMilafWindows() {
-		return milafWindows;
-	}
-
-	public JMenuItem getMihLicence() {
-		return mihLicence;
-	}
-
-	public JFileChooser getJfileChooser() {
-		return jfileChooser;
-	}
-
-	public JButton getJbutPreviewTATransform() {
-		return jbutPreviewTATransform;
-	}
-
-	public JButton getJbutHtmlEntitysTATransform() {
-		return jbutHtmlEntitysTATransform;
-	}
-
-	public JTextArea getJtaIso8859_7() {
-		return jtaIso8859_7;
-	}
-
-	public JButton getJbutIso8859_7TATransform() {
-		return jbutIso8859_7TATransform;
-	}
-
-	public JButton getJbutInputTACopyIso_8859_7_ToClipboard() {
-		return jbutInputTACopyIso_8859_7_ToClipboard;
 	}
 
 }
