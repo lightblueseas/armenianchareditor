@@ -45,10 +45,10 @@ public class SaveFileAction extends AbstractAction implements Constants {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		MainFrame frame = MainFrame.getInstance();
-		JTextArea textAreaInput = frame.getJtaInput();
-		JTextArea textAreaPreview = frame.getJtaPreview();
-		JTextArea textAreaHtmlEntitys = frame.getJtaHtmlEntitys();
-		JTextArea textAreaIso_8859_7 = frame.getJtaIso8859_7();
+		JTextArea textAreaInput = frame.getMainPanel().getJtaInput();
+		JTextArea textAreaPreview = frame.getMainPanel().getJtaPreview();
+		JTextArea textAreaHtmlEntitys = frame.getMainPanel().getJtaHtmlEntitys();
+		JTextArea textAreaIso_8859_7 = frame.getMainPanel().getJtaIso8859_7();
 		 saveFile(textAreaInput, textAreaPreview, textAreaHtmlEntitys, textAreaIso_8859_7);
 	}
 

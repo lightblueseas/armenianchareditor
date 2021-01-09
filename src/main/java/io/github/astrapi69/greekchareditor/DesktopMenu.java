@@ -20,7 +20,7 @@
  */
 package io.github.astrapi69.greekchareditor;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -31,10 +31,23 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
+import javax.help.CSH;
+import javax.help.DefaultHelpBroker;
+import javax.help.HelpSet;
+import javax.help.WindowPresentation;
+import javax.swing.*;
 
+import de.alpharogroup.layout.CloseWindow;
+import de.alpharogroup.swing.actions.OpenBrowserAction;
+import de.alpharogroup.swing.menu.MenuExtensions;
+import gr.frame.actions.ShowHelpDialogAction;
+import gr.frame.actions.ShowInfoDialogAction;
+import gr.frame.actions.ShowLicenseFrameAction;
+import gr.frame.events.NewFileAction;
+import gr.frame.events.OpenFileAction;
+import gr.frame.events.SaveFileAction;
+import gr.frame.util.Constants;
+import io.github.astrapi69.greekchareditor.actions.NewMainInternalFrameAction;
 import org.springframework.core.io.Resource;
 
 import de.alpharogroup.layout.ScreenSizeExtensions;
@@ -52,12 +65,110 @@ import lombok.extern.java.Log;
 public class DesktopMenu extends BaseDesktopMenu
 {
 
+	JMenu menuFile;
+
+	JMenu menuEdit;
+
+	JMenu menuLookAndFell;
+
+	JMenu menuHelp;
+
+	// File-MenuItems
+	JMenuItem mifNew;
+
+	JMenuItem mifOpen;
+
+	JMenuItem mifSave;
+
+	JMenuItem mifSaveAs;
+
+	JMenuItem mifClose;
+
+	// Look and Feel-MenuItems
+	JMenuItem milafMetal;
+
+	JMenuItem milafMotiv;
+
+	JMenuItem milafWindows;
+
+	CloseWindow closeWindow;
+
+	JFileChooser jfileChooser;
+
+	Window helpWindow;
+
 	/**
 	 * Instantiates a new desktop menu.
 	 */
 	public DesktopMenu(@NonNull Component applicationFrame)
 	{
 		super(applicationFrame);
+	}
+
+	protected JMenu newHelpMenu(final ActionListener listener) {
+		// Help menu
+		JMenu menuHelp = new JMenu(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.help")); //$NON-NLS-1$
+		menuHelp.setMnemonic('H');
+
+		// Help JMenuItems
+		// Help content
+		JMenuItem mihHelpContent = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.content"), 'c'); //$NON-NLS-1$
+		MenuExtensions.setCtrlAccelerator(mihHelpContent, 'H');
+
+		menuHelp.add(mihHelpContent);
+		// found bug with the javax.help
+		// Exception in thread "main" java.lang.SecurityException: no manifiest
+		// section for signature file entry
+		// com/sun/java/help/impl/TagProperties.class
+		// Solution is to remove the rsa files from the jar
+
+		HelpSet hs = getHelpSet();
+		DefaultHelpBroker helpBroker = (DefaultHelpBroker) hs
+				.createHelpBroker();
+		WindowPresentation pres = helpBroker.getWindowPresentation();
+		pres.createHelpWindow();
+		helpWindow = pres.getHelpWindow();
+
+		helpWindow.setLocationRelativeTo(null);
+
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		SwingUtilities.updateComponentTreeUI(helpWindow);
+
+		// 2. assign help to components
+		CSH.setHelpIDString(mihHelpContent, "Overview");
+		// 3. handle events
+		CSH.DisplayHelpFromSource displayHelpFromSource = new CSH.DisplayHelpFromSource(
+				helpBroker);
+		mihHelpContent.addActionListener(displayHelpFromSource);
+		mihHelpContent.addActionListener(new ShowHelpDialogAction("Content"));
+
+		// Donate
+		JMenuItem mihDonate = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.donate")); //$NON-NLS-1$
+
+
+		mihDonate.addActionListener(new OpenBrowserAction("Donate", this, Constants.URL_TO_DONATE));
+		menuHelp.add(mihDonate);
+
+		// Licence
+		JMenuItem mihLicence = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.licence")); //$NON-NLS-1$
+		mihLicence.addActionListener(new ShowLicenseFrameAction("Licence"));
+		menuHelp.add(mihLicence);
+		// Info
+		JMenuItem mihInfo = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.info"), 'i'); //$NON-NLS-1$
+		MenuExtensions.setCtrlAccelerator(mihInfo, 'I');
+		mihInfo.addActionListener(new ShowInfoDialogAction("Info"));
+		menuHelp.add(mihInfo);
+
+		return menuHelp;
 	}
 
 	@Override
@@ -80,22 +191,36 @@ public class DesktopMenu extends BaseDesktopMenu
 	{
 		final JMenu fileMenu = super.newFileMenu(listener);
 
-		JMenuItem jmi;
-
-		final JMenu keyMenu = new JMenu("Key");
-		keyMenu.setMnemonic('K');
-		fileMenu.add(keyMenu);
-
+		// Neu
+		mifNew = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.new"), 'n'); //$NON-NLS-1$
+		MenuExtensions.setCtrlAccelerator(mifNew, 'N');
+		mifNew.addActionListener(new NewMainInternalFrameAction("NewMainInternalFrameAction"));
+		fileMenu.add(mifNew);
+		// Oeffnen
+		mifOpen = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.open"), 'o'); //$NON-NLS-1$
+		MenuExtensions.setCtrlAccelerator(mifOpen, 'O');
+		mifOpen.addActionListener(new OpenFileAction("OpenFileAction"));
+		fileMenu.add(mifOpen);
+		// Speichern
+		mifSave = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.save"), 's'); //$NON-NLS-1$
+		MenuExtensions.setCtrlAccelerator(mifSave, 'S');
+		mifSave.addActionListener(new SaveFileAction(Constants.SAVE));
+		fileMenu.add(mifSave);
+		// Speichern unter
+		mifSaveAs = new JMenuItem(gr.frame.Messages
+				.getString("TransformerJFrame.menu.item.saveas"), 'u'); //$NON-NLS-1$
+		MenuExtensions.setCtrlAccelerator(mifSaveAs, 'U');
+		mifSaveAs.addActionListener(new SaveFileAction(Constants.SAVE_AS));
+		fileMenu.add(mifSaveAs);
 		// Separator
 		fileMenu.addSeparator();
 
-		final JMenu obfuscationMenu = new JMenu("Obfuscation");
-		obfuscationMenu.setMnemonic('O');
-		fileMenu.add(obfuscationMenu);
-
 		// Fullscreen
 		JMenuItem jmiToFullScreen;
-		jmiToFullScreen = new JMenuItem("To Fullscreen", 'F');
+		jmiToFullScreen = new JMenuItem("Toggle Fullscreen", 'F');
 		jmiToFullScreen.addActionListener(new ToggleFullScreenAction("Fullscreen", SpringBootSwingApplication.getInstance()) {
 
 			/**
@@ -109,7 +234,6 @@ public class DesktopMenu extends BaseDesktopMenu
 		});
 		jmiToFullScreen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F11, InputEvent.ALT_DOWN_MASK));
 		fileMenu.add(jmiToFullScreen);
-
 		// Exit
 		JMenuItem jmiExit;
 		jmiExit = new JMenuItem("Exit", 'E');
@@ -119,7 +243,6 @@ public class DesktopMenu extends BaseDesktopMenu
 
 		return fileMenu;
 	}
-
 
 	@Override
 	protected String newLabelTextApplicationName()

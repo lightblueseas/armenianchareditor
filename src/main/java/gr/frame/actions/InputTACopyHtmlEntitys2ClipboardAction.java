@@ -20,8 +20,8 @@ public class InputTACopyHtmlEntitys2ClipboardAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		MainFrame frame = MainFrame.getInstance();
-		JTextArea textAreaInput = frame.getJtaInput();
-		JTextArea textAreaHtmlEntitys = frame.getJtaHtmlEntitys();
+		JTextArea textAreaInput = frame.getMainPanel().getJtaInput();
+		JTextArea textAreaHtmlEntitys = frame.getMainPanel().getJtaHtmlEntitys();
 		ClipboardUtils
 				.copy2Clipboard(textAreaInput, textAreaHtmlEntitys, false);
 

@@ -20,12 +20,12 @@
  */
 package io.github.astrapi69.greekchareditor;
 
-import java.awt.Component;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.io.File;
 
-import javax.swing.JInternalFrame;
+import javax.swing.*;
 
+import de.alpharogroup.layout.CloseWindow;
 import de.alpharogroup.model.BaseModel;
 import de.alpharogroup.model.api.Model;
 import de.alpharogroup.swing.plaf.LookAndFeels;
@@ -52,6 +52,7 @@ import lombok.experimental.FieldDefaults;
  */
 @SuppressWarnings("serial")
 @SpringBootApplication
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SpringBootSwingApplication extends ApplicationFrame<ApplicationModelBean>
 {
@@ -105,12 +106,19 @@ public class SpringBootSwingApplication extends ApplicationFrame<ApplicationMode
 	}
 
 	/** The console internal frame. */
-	@Getter
 	JInternalFrame consoleInternalFrame;
 
 	/** The internal frame. */
-	@Getter
 	JInternalFrame internalFrame;
+
+	public static final String TITLE = gr.frame.Messages
+			.getString("TransformerJFrame.title"); //$NON-NLS-1$
+
+	public static final String ISO_8859_7 = gr.frame.Messages
+			.getString("TransformerJFrame.iso8859_7"); //$NON-NLS-1$
+
+	public static final String[] columnNames = {
+			gr.frame.Messages.getString("TransformerJFrame.column.greek"), gr.frame.Messages.getString("TransformerJFrame.column.latin"), gr.frame.Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	/**
 	 * Instantiates a new main frame.
