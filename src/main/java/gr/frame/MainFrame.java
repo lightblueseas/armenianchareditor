@@ -79,178 +79,117 @@ public class MainFrame extends JFrame {
 	// JTextAreas and JTable
 	private JTextArea jtaPreview;
 
-
 	private JTextArea jtaHtmlEntitys;
-
 
 	private JTextArea jtaUnicode;
 
-
 	private JTextArea jtaIso8859_7;
-
 
 	private JTextArea jtaInput;
 
-
 	private JTabbedPane jtpOutput;
-
 
 	private JPanel panelJTAHtmlEntitys;
 
-
 	private JPanel panelJTAUnicode;
 
-
 	private JPanel panelJTAIso8859_7;
-
 
 	private JTable jTableAlphabet;
 
 	// JLabels
-
 	private JLabel labelInput;
-
 
 	private JLabel labelHtmlEntitys;
 
 	private JLabel labelUnicode;
 
-
 	private JLabel labelIso8859_7;
-
 
 	private JLabel labelPreview;
 
-
 	private JLabel labelAlphabet;
-
 
 	private JLabel labelPlaceholder;
 
 	// JScrollPane
-
 	private JScrollPane jscrollPaneTableAlphabet;
-
 
 	private JScrollPane jscrollPanejtaInput;
 
-
 	private JScrollPane jscrollPanejtaPreview;
-
 
 	private JScrollPane jscrollPanejtaHtmlEntitys;
 
-
 	private JScrollPane jscrollPanejtaUnicode;
-
 
 	private JScrollPane jscrollPanejtaIso8859_7;
 
 	// Insets
-
 	private Insets oneInsent;
-
 
 	private Insets twoInsent;
 
 	// JMenuBar and JMenus
-
 	private JMenuBar menubar;
-
 
 	private JMenu menuFile;
 
-
 	private JMenu menuEdit;
 
-
 	private JMenu menuLookAndFell;
-
 
 	private JMenu menuHelp;
 
 	// File-MenuItems
-
 	private JMenuItem mifNew;
-
 
 	private JMenuItem mifOpen;
 
-
 	private JMenuItem mifSave;
 
-
 	private JMenuItem mifSaveAs;
-
 
 	private JMenuItem mifClose;
 
 	// Look and Feel-MenuItems
-	/**   */
 	private JMenuItem milafMetal;
 
-	/**   */
 	private JMenuItem milafMotiv;
 
-	/**   */
 	private JMenuItem milafWindows;
 
 	// Help-MenuItems
-
 	private JMenuItem mihHelpContent;
 
-
 	private JMenuItem mihLicence;
-
 
 	private JMenuItem mihInfo;
 
 	// Buttons
-
 	private JButton jbutInputTATranform;
 
-
 	private JButton jbutInputTACopyHtmlEntitys2Clipboard;
-
 
 	private JButton jbutInputTACopyIso_8859_7_ToClipboard;
 
 	private JButton jbutInputTACopyIso_GreekChars_ToClipboard;
 
-
 	private JButton jbutInputTAClear;
-
 
 	private JButton jbutPreviewTATransform;
 
-
 	private JButton jbutHtmlEntitysTATransform;
-
 
 	private JButton jbutUnicodeTATransform;
 
-	public JButton getJbutUnicodeTATransform() {
-		return jbutUnicodeTATransform;
-	}
-
-
 	private JButton jbutIso8859_7TATransform;
 
-
 	private CloseWindow closeWindow;
-
 
 	private JFileChooser jfileChooser;
 
 	private Window helpWindow;
-
-	public Window getHelpWindow() {
-		return helpWindow;
-	}
-
-	public void setHelpWindow(Window helpWindow) {
-		this.helpWindow = helpWindow;
-	}
 
 	private static MainFrame instance = new MainFrame();
 
@@ -259,10 +198,6 @@ public class MainFrame extends JFrame {
 	}
 
 	private LookAndFeels currentLookAndFeels = LookAndFeels.SYSTEM;
-
-	public LookAndFeels getCurrentLookAndFeels() {
-		return currentLookAndFeels;
-	}
 
 	public void setCurrentLookAndFeels(LookAndFeels currentLookAndFeels) {
 		this.currentLookAndFeels = currentLookAndFeels;
@@ -307,23 +242,23 @@ public class MainFrame extends JFrame {
 		return panel;
 	}
 
-	private JPanel newPanelWithScrollPane(JPanel labelWithButtonPanel) {
+	private JPanel newPanelWithScrollPane(JPanel labelWithButtonPanel, JScrollPane jscrollPane) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		panel.add(labelWithButtonPanel,	BorderLayout.NORTH);
-		panel.add(jscrollPanejtaHtmlEntitys, BorderLayout.CENTER);
+		panel.add(jscrollPane, BorderLayout.CENTER);
 		return panel;
 	}
 
 	private void createJPanels() {
 		panelJTAHtmlEntitys = newPanelWithScrollPane(
-				newLabelWithButtonPanel(labelHtmlEntitys, jbutHtmlEntitysTATransform));
+				newLabelWithButtonPanel(labelHtmlEntitys, jbutHtmlEntitysTATransform), jscrollPanejtaHtmlEntitys);
 
 		panelJTAUnicode = newPanelWithScrollPane(
-				newLabelWithButtonPanel(labelUnicode, jbutUnicodeTATransform));
+				newLabelWithButtonPanel(labelUnicode, jbutUnicodeTATransform), jscrollPanejtaUnicode);
 
 		panelJTAIso8859_7 = newPanelWithScrollPane(
-				newLabelWithButtonPanel(labelIso8859_7, jbutIso8859_7TATransform));
+				newLabelWithButtonPanel(labelIso8859_7, jbutIso8859_7TATransform), jscrollPanejtaIso8859_7);
 	}
 
 	private void createJTabbedPane() {
@@ -819,7 +754,7 @@ public class MainFrame extends JFrame {
 		HelpSet hs = null;
 
 		URL hsURL = getClass().getClassLoader().getResource(
-				"gr/frame/help/simple-hs.xml");
+				"help/simple-hs.xml");
 		try {
 
 			hs = new HelpSet(null, hsURL);
