@@ -28,10 +28,12 @@ import javax.swing.*;
 import de.alpharogroup.layout.CloseWindow;
 import de.alpharogroup.model.BaseModel;
 import de.alpharogroup.model.api.Model;
+import de.alpharogroup.swing.base.BasePanel;
 import de.alpharogroup.swing.plaf.LookAndFeels;
 import de.alpharogroup.swing.splashscreen.BaseSplashScreen;
 import de.alpharogroup.swing.splashscreen.SplashScreenModelBean;
 import de.alpharogroup.throwable.ThrowableExtensions;
+import io.github.astrapi69.greekchareditor.panels.MainPanel;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -54,7 +56,7 @@ import lombok.experimental.FieldDefaults;
 @SpringBootApplication
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SpringBootSwingApplication extends ApplicationFrame<ApplicationModelBean>
+public class SpringBootSwingApplication extends ApplicationPanelFrame<ApplicationModelBean>
 {
 
 	public static ConfigurableApplicationContext ctx;
@@ -105,12 +107,6 @@ public class SpringBootSwingApplication extends ApplicationFrame<ApplicationMode
 		});
 	}
 
-	/** The console internal frame. */
-	JInternalFrame consoleInternalFrame;
-
-	/** The internal frame. */
-	JInternalFrame internalFrame;
-
 	public static final String TITLE = gr.frame.Messages
 			.getString("TransformerJFrame.title"); //$NON-NLS-1$
 
@@ -126,25 +122,6 @@ public class SpringBootSwingApplication extends ApplicationFrame<ApplicationMode
 	public SpringBootSwingApplication()
 	{
 		super(Messages.getString("mainframe.title"));
-	}
-
-	public void getConsoleOutput()
-	{
-		if (consoleInternalFrame == null)
-		{
-			consoleInternalFrame = JComponentFactory.newInternalFrame("Console", true, true, true,
-				true);
-			ConsolePanel consolePanel = new ConsolePanel();
-			int screenHeight = ScreenSizeExtensions.getScreenHeight(this);
-			int screenWidth = ScreenSizeExtensions.getScreenWidth(this);
-			JInternalFrameExtensions.addComponentToFrame(consoleInternalFrame, consolePanel);
-			JInternalFrameExtensions.addJInternalFrame(
-				SpringBootSwingApplication.getInstance().getMainComponent(), consoleInternalFrame);
-			consoleInternalFrame.setSize(screenWidth, (screenHeight / 4));
-			consoleInternalFrame.setLocation(0, (screenHeight / 4) * 3);
-			consoleInternalFrame.setResizable(false);
-			consoleInternalFrame.putClientProperty("dragMode", "fixed");
-		}
 	}
 
 	@Override
@@ -181,7 +158,6 @@ public class SpringBootSwingApplication extends ApplicationFrame<ApplicationMode
 		if (instance == null)
 		{
 			instance = this;
-			getConsoleOutput();
 		}
 		setTitle(Messages.getString("mainframe.title"));
 	}
@@ -193,4 +169,8 @@ public class SpringBootSwingApplication extends ApplicationFrame<ApplicationMode
 	}
 
 
+	@Override
+	protected BasePanel<ApplicationModelBean> newMainComponent() {
+		return new MainPanel();
+	}
 }

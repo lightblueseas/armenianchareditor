@@ -43,11 +43,10 @@ import de.alpharogroup.swing.menu.MenuExtensions;
 import gr.frame.actions.ShowHelpDialogAction;
 import gr.frame.actions.ShowInfoDialogAction;
 import gr.frame.actions.ShowLicenseFrameAction;
-import gr.frame.events.NewFileAction;
 import gr.frame.events.OpenFileAction;
 import gr.frame.events.SaveFileAction;
 import gr.frame.util.Constants;
-import io.github.astrapi69.greekchareditor.actions.NewMainInternalFrameAction;
+import io.github.astrapi69.greekchareditor.actions.NoAction;
 import org.springframework.core.io.Resource;
 
 import de.alpharogroup.layout.ScreenSizeExtensions;
@@ -195,7 +194,7 @@ public class DesktopMenu extends BaseDesktopMenu
 		mifNew = new JMenuItem(gr.frame.Messages
 				.getString("TransformerJFrame.menu.item.new"), 'n'); //$NON-NLS-1$
 		MenuExtensions.setCtrlAccelerator(mifNew, 'N');
-		mifNew.addActionListener(new NewMainInternalFrameAction("NewMainInternalFrameAction"));
+		mifNew.addActionListener(new NoAction("New no action"));
 		fileMenu.add(mifNew);
 		// Oeffnen
 		mifOpen = new JMenuItem(gr.frame.Messages

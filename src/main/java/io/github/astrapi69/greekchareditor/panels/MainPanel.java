@@ -2,6 +2,7 @@ package io.github.astrapi69.greekchareditor.panels;
 
 import de.alpharogroup.swing.base.BasePanel;
 import de.alpharogroup.swing.utils.KeyStrokeExtensions;
+import gr.characters.constants.ArmenianAlphabet;
 import gr.characters.constants.GreekAlphabet;
 import gr.frame.Messages;
 import gr.frame.actions.*;
@@ -23,6 +24,9 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
 
     public static final String[] columnNames = {
             Messages.getString("TransformerJFrame.column.greek"), Messages.getString("TransformerJFrame.column.latin"), Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+    public static final String[] armenianColumnNames = {
+            Messages.getString("TransformerJFrame.column.armenian"), Messages.getString("TransformerJFrame.column.latin"), Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
     // JTextAreas and JTable
     JTextArea jtaPreview;
@@ -478,7 +482,7 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
     }
 
     private void createJTable() {
-        jTableAlphabet = new JTable(GreekAlphabet.greekAlphabet, columnNames);
+        jTableAlphabet = new JTable(ArmenianAlphabet.armenianAlphabet, armenianColumnNames);
     }
 
     private void createAllJLabels() {
