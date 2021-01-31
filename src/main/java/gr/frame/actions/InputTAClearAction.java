@@ -19,11 +19,11 @@ public class InputTAClearAction extends AbstractAction implements Constants  {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		MainFrame frame = MainFrame.getInstance();
-		JTextArea textAreaInput = frame.getJtaInput();
-		JTextArea textAreaPreview = frame.getJtaPreview();
-		JTextArea textAreaHtmlEntitys = frame.getJtaHtmlEntitys();
-		JTextArea textAreaISO_8859_7 = frame.getJtaIso8859_7();
-		JTextArea textAreaUnicode = frame.getJtaUnicode();
+		JTextArea textAreaInput = frame.getMainPanel().getJtaInput();
+		JTextArea textAreaPreview = frame.getMainPanel().getJtaPreview();
+		JTextArea textAreaHtmlEntitys = frame.getMainPanel().getJtaHtmlEntitys();
+		JTextArea textAreaISO_8859_7 = frame.getMainPanel().getJtaIso8859_7();
+		JTextArea textAreaUnicode = frame.getMainPanel().getJtaUnicode();
 		clearJTextAreas(textAreaInput, textAreaPreview, textAreaHtmlEntitys, textAreaISO_8859_7, textAreaUnicode);
 
 

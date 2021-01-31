@@ -20,7 +20,7 @@ public class InputTACopyIso_GreekChars_ToClipboardAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		MainFrame frame = MainFrame.getInstance();
-		JTextArea textAreaPreview = frame.getJtaPreview();
+		JTextArea textAreaPreview = frame.getMainPanel().getJtaPreview();
 		ClipboardUtils
 				.copyToClipboard(textAreaPreview);
 
