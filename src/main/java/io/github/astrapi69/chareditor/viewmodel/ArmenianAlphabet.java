@@ -1,6 +1,14 @@
-package gr.characters.constants;
+package io.github.astrapi69.chareditor.viewmodel;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ArmenianAlphabet {
+    public static Map<String, CharacterInfo> characterInfoMap(){
+        Map<String, CharacterInfo> characterInfoMap = new LinkedHashMap<>();
+        Arrays.stream(armenianAlphabet).forEach(entry -> );
+    }
 
     public static final String[][] armenianAlphabet = {
             {         "\u0531", "A", "&#1329;", "Ա", "ARMENIAN CAPITAL LETTER AYB"   },

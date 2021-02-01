@@ -1,12 +1,12 @@
-package io.github.astrapi69.greekchareditor.panels;
+package io.github.astrapi69.chareditor.panels;
 
 import de.alpharogroup.swing.base.BasePanel;
 import de.alpharogroup.swing.utils.KeyStrokeExtensions;
 import gr.characters.constants.ArmenianAlphabet;
-import gr.characters.constants.GreekAlphabet;
-import gr.frame.Messages;
+//import gr.frame.Messages;
 import gr.frame.actions.*;
-import io.github.astrapi69.greekchareditor.ApplicationModelBean;
+import io.github.astrapi69.chareditor.ApplicationModelBean;
+import io.github.astrapi69.chareditor.Messages;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

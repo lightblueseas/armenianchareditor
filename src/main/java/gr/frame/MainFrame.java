@@ -16,7 +16,7 @@ import gr.frame.events.NewFileAction;
 import gr.frame.events.OpenFileAction;
 import gr.frame.events.SaveFileAction;
 import gr.frame.util.Constants;
-import io.github.astrapi69.greekchareditor.panels.MainPanel;
+import io.github.astrapi69.chareditor.panels.MainPanel;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;

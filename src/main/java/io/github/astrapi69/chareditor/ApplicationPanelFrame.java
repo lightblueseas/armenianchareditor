@@ -1,4 +1,4 @@
-package io.github.astrapi69.greekchareditor;
+package io.github.astrapi69.chareditor;
 
 import de.alpharogroup.swing.base.AbstractApplicationFrame;
 import de.alpharogroup.swing.base.BasePanel;

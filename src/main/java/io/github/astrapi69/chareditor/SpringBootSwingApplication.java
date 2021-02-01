@@ -18,14 +18,11 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.greekchareditor;
+package io.github.astrapi69.chareditor;
 
 import java.awt.*;
 import java.io.File;
 
-import javax.swing.*;
-
-import de.alpharogroup.layout.CloseWindow;
 import de.alpharogroup.model.BaseModel;
 import de.alpharogroup.model.api.Model;
 import de.alpharogroup.swing.base.BasePanel;
@@ -33,17 +30,12 @@ import de.alpharogroup.swing.plaf.LookAndFeels;
 import de.alpharogroup.swing.splashscreen.BaseSplashScreen;
 import de.alpharogroup.swing.splashscreen.SplashScreenModelBean;
 import de.alpharogroup.throwable.ThrowableExtensions;
-import io.github.astrapi69.greekchareditor.panels.MainPanel;
+import io.github.astrapi69.chareditor.panels.MainPanel;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import de.alpharogroup.layout.ScreenSizeExtensions;
-import de.alpharogroup.swing.base.ApplicationFrame;
 import de.alpharogroup.swing.base.BaseDesktopMenu;
-import de.alpharogroup.swing.components.factories.JComponentFactory;
-import de.alpharogroup.swing.panels.output.ConsolePanel;
-import de.alpharogroup.swing.utils.JInternalFrameExtensions;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -98,7 +90,7 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 		ThrowableExtensions.toRuntimeExceptionIfNeeded(i -> Thread.sleep(splashScreenModelBean.getShowTime()));
 
 		ConfigurableApplicationContext ctx = new SpringApplicationBuilder(
-			SpringBootSwingApplication.class).headless(false).run(args);
+			SpringBootSwingApplication.class).headless(false).run();
 		SpringBootSwingApplication.ctx = ctx;
 
 		EventQueue.invokeLater(() -> {
@@ -107,14 +99,16 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 		});
 	}
 
-	public static final String TITLE = gr.frame.Messages
+	public static final String TITLE = Messages
 			.getString("TransformerJFrame.title"); //$NON-NLS-1$
 
-	public static final String ISO_8859_7 = gr.frame.Messages
+	public static final String ISO_8859_7 = Messages
 			.getString("TransformerJFrame.iso8859_7"); //$NON-NLS-1$
 
 	public static final String[] columnNames = {
-			gr.frame.Messages.getString("TransformerJFrame.column.greek"), gr.frame.Messages.getString("TransformerJFrame.column.latin"), gr.frame.Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			Messages.getString("TransformerJFrame.column.greek"),
+			Messages.getString("TransformerJFrame.column.latin"),
+			Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	/**
 	 * Instantiates a new main frame.
@@ -165,7 +159,7 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 	@Override
 	protected LookAndFeels newLookAndFeels()
 	{
-		return LookAndFeels.METAL;
+		return LookAndFeels.GTK;
 	}
 
 

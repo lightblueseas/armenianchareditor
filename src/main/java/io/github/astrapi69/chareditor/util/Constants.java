@@ -1,4 +1,4 @@
-package io.github.astrapi69.greekchareditor.util;
+package io.github.astrapi69.chareditor.util;
 
 public interface Constants {
 

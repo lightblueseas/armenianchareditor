@@ -1,4 +1,4 @@
-package io.github.astrapi69.greekchareditor.actions;
+package io.github.astrapi69.chareditor.actions;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

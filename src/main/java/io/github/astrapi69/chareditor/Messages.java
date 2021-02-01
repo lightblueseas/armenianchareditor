@@ -18,28 +18,47 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.greekchareditor;
+package io.github.astrapi69.chareditor;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+
+import lombok.experimental.UtilityClass;
+import lombok.extern.java.Log;
 
 /**
- * The class {@link ApplicationModelBean} holds application specific data
+ * The Class Messages.
  */
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
-@NoArgsConstructor
-//@AllArgsConstructor
-@Builder(toBuilder = true)
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class ApplicationModelBean
+@Log
+@UtilityClass
+public class Messages
 {
+
+	/** The Constant BUNDLE_NAME. */
+	private static final String BUNDLE_NAME = "ui.messages"; //$NON-NLS-1$
+
+	/** The Constant RESOURCE_BUNDLE. */
+	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+
+	/**
+	 * Gets the string.
+	 *
+	 * @param key
+	 *            the key
+	 * @return the string
+	 */
+	public static String getString(final String key)
+	{
+		try
+		{
+			return RESOURCE_BUNDLE.getString(key);
+		}
+		catch (final MissingResourceException e)
+		{
+			log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			return "!!!" + key + "!!! not found";
+		}
+	}
+
 }
