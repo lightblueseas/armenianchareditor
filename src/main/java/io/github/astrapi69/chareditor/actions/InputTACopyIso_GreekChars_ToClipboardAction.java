@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class InputTACopyIso_GreekChars_ToClipboardAction extends AbstractAction
-		implements Constants {
+		 {
 
 	public InputTACopyIso_GreekChars_ToClipboardAction(String name) {
 		super(name);

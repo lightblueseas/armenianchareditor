@@ -53,7 +53,7 @@ public class SaveFileAction extends AbstractAction implements Constants {
 
 
 	private void saveFile(JTextArea textAreaInput, JTextArea textAreaPreview, JTextArea textAreaHtmlEntitys) {
-		MainFrame frame = MainFrame.getInstance();
+		SpringBootSwingApplication frame = SpringBootSwingApplication.getInstance();
 		JFileChooser fc = frame.getJfileChooser();
 		fc.setDialogTitle(dialogTitle);
 		int returnVal = fc.showSaveDialog(frame);

@@ -2,6 +2,7 @@ package io.github.astrapi69.chareditor.actions;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.swing.actions.OpenBrowserAction;
+import io.github.astrapi69.chareditor.SpringBootSwingApplication;
 import io.github.astrapi69.chareditor.util.Constants;
 
 import java.awt.AWTException;
@@ -86,7 +87,7 @@ public class SystemTrayMenu {
         trayIcon.addActionListener( new ActionListener(){
             @Override
             public void actionPerformed( ActionEvent e ) {
-                MainFrame.getInstance().toFront();
+                SpringBootSwingApplication.getInstance().toFront();
             }
         } );
         return trayIcon;
@@ -108,13 +109,13 @@ public class SystemTrayMenu {
 
             @Override
             public void actionPerformed( ActionEvent e ) {
-            	MainFrame.getInstance().toFront();
+                SpringBootSwingApplication.getInstance().toFront();
             }
 
         } );
 
         MenuItem miDonate = new MenuItem("Donate");
-        miDonate.addActionListener(new OpenBrowserAction("Donate", MainFrame.getInstance(), Constants.URL_TO_DONATE));
+        miDonate.addActionListener(new OpenBrowserAction("Donate", SpringBootSwingApplication.getInstance(), Constants.URL_TO_DONATE));
         popupMenu.add( miDonate );
 
         MenuItem miQuit = new MenuItem("Quit");

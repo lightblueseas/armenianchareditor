@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class InputTACopyHtmlEntitys2ClipboardAction extends AbstractAction
-		implements Constants {
+		 {
 
 	public InputTACopyHtmlEntitys2ClipboardAction(String name) {
 		super(name);

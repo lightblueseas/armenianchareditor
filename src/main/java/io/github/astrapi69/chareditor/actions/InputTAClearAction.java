@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JTextArea;
 @SuppressWarnings("serial")
-public class InputTAClearAction extends AbstractAction implements Constants  {
+public class InputTAClearAction extends AbstractAction  {
 
 
 	public InputTAClearAction(String name) {
@@ -37,10 +37,10 @@ public class InputTAClearAction extends AbstractAction implements Constants  {
 	private void clearJTextAreas(JTextArea textAreaInput,
 			JTextArea textAreaPreview, JTextArea textAreaHtmlEntitys,
 			 JTextArea textAreaUnicode) {
-		textAreaInput.replaceRange(EMPTYSTRING, 0, textAreaInput.getText().length());
-		textAreaPreview.replaceRange(EMPTYSTRING, 0, textAreaPreview.getText().length());
-		textAreaHtmlEntitys.replaceRange(EMPTYSTRING, 0, textAreaHtmlEntitys.getText().length());
-		textAreaUnicode.replaceRange(EMPTYSTRING, 0, textAreaUnicode.getText().length());
+		textAreaInput.replaceRange("", 0, textAreaInput.getText().length());
+		textAreaPreview.replaceRange("", 0, textAreaPreview.getText().length());
+		textAreaHtmlEntitys.replaceRange("", 0, textAreaHtmlEntitys.getText().length());
+		textAreaUnicode.replaceRange("", 0, textAreaUnicode.getText().length());
 	}
 
 }

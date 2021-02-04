@@ -12,7 +12,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class HtmlEntitysTATransformAction extends AbstractAction implements Constants  {
+public class HtmlEntitysTATransformAction extends AbstractAction {
 
 
 	/** The html entitys2 greek. */
@@ -69,7 +69,7 @@ public class HtmlEntitysTATransformAction extends AbstractAction implements Cons
 			char current = entitys.charAt(i);
 			String rest = entitys.substring(i);
 			if (current == '&') {
-				int semi = rest.indexOf(SEMICOLON);
+				int semi = rest.indexOf(";");
 				if ((semi == -1) || ((semi - i) > 7)) {
 					outputLatinChars.append(current);
 					outputGreekChars.append(current);

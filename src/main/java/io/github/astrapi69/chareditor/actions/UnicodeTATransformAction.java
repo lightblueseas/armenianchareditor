@@ -12,7 +12,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class UnicodeTATransformAction extends AbstractAction implements Constants  {
+public class UnicodeTATransformAction extends AbstractAction   {
 
 
 	/** The greek2latin. */
@@ -68,7 +68,7 @@ public class UnicodeTATransformAction extends AbstractAction implements Constant
 				String unicodeString = unicode.substring(i, i+6);
 				StringExtensions.convertUnicodeStringToCharacter(unicodeString);
 				char ch = StringExtensions.convertUnicodeStringToCharacter(unicodeString);
-				String crrnt = EMPTYSTRING + ch;
+				String crrnt = "" + ch;
 				outputGreekChars.append(ch);
 				outputLatinChars.append(greek2latin.getProperty(crrnt));
 				outputHtmlEntitys.append(greek2GrHTMLEntitys.getProperty(crrnt));

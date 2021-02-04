@@ -41,6 +41,8 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+import javax.swing.*;
+
 /**
  * The class {@link SpringBootSwingApplication}
  */
@@ -55,6 +57,8 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 
 	/** The instance. */
 	private static SpringBootSwingApplication instance;
+
+	JFileChooser jfileChooser;
 
 	/**
 	 * Gets the single instance of SpringBootSwingApplication.
@@ -120,6 +124,7 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 	public SpringBootSwingApplication()
 	{
 		super(Messages.getString("mainframe.title"));
+		jfileChooser = new JFileChooser();
 	}
 
 	@Override

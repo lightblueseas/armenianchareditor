@@ -39,7 +39,7 @@ public class OpenFileAction extends AbstractAction implements Constants {
 
 	private void openFile(JTextArea textAreaInput, JTextArea textAreaPreview, JTextArea textAreaHtmlEntitys) {
 
-		MainFrame frame = MainFrame.getInstance();
+		SpringBootSwingApplication frame = SpringBootSwingApplication.getInstance();
 		GRCFilter filter = new GRCFilter();
 		JFileChooser fc = frame.getJfileChooser();
 		fc.setFileFilter(filter);
