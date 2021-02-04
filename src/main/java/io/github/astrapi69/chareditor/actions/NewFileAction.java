@@ -1,6 +1,6 @@
 package io.github.astrapi69.chareditor.actions;
 
-import gr.frame.MainFrame;
+import io.github.astrapi69.chareditor.SpringBootSwingApplication;
 import io.github.astrapi69.chareditor.util.Constants;
 
 import java.awt.event.ActionEvent;
@@ -32,17 +32,15 @@ public class NewFileAction extends AbstractAction implements Constants {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainFrame frame = MainFrame.getInstance();
+		SpringBootSwingApplication frame = SpringBootSwingApplication.getInstance();
         JTextArea textAreaInput = frame.getMainPanel().getJtaInput();
         JTextArea textAreaPreview = frame.getMainPanel().getJtaPreview();
         JTextArea textAreaHtmlEntitys = frame.getMainPanel().getJtaHtmlEntitys();
-        JTextArea textAreaIso_8859_7 =frame.getMainPanel().getJtaIso8859_7();
         textAreaInput.replaceRange(EMPTYSTRING, 0, textAreaInput.getText().length());
         textAreaPreview.replaceRange(EMPTYSTRING, 0, textAreaPreview.getText()
                 .length());
         textAreaHtmlEntitys.replaceRange(EMPTYSTRING, 0, textAreaHtmlEntitys.getText()
                 .length());
-        textAreaIso_8859_7.replaceRange(EMPTYSTRING, 0, textAreaIso_8859_7.getText().length());
 	}
 
 }

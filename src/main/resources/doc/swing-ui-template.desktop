@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=greekchareditor
+Name=chareditor
 GenericName=Tool
 Comment=template application
-Exec=sh -c 'java -jar ~/apps/greekchareditor/greekchareditor.jar'
-Icon=~/apps/greekchareditor/img/icon.png
+Exec=sh -c 'java -jar ~/apps/chareditor/chareditor.jar'
+Icon=~/apps/chareditor/img/icon.png

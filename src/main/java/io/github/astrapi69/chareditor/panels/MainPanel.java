@@ -2,9 +2,8 @@ package io.github.astrapi69.chareditor.panels;
 
 import de.alpharogroup.swing.base.BasePanel;
 import de.alpharogroup.swing.utils.KeyStrokeExtensions;
-import gr.characters.constants.ArmenianAlphabet;
-//import gr.frame.Messages;
-import gr.frame.actions.*;
+import io.github.astrapi69.chareditor.actions.*;
+import io.github.astrapi69.chareditor.viewmodel.ArmenianAlphabet;
 import io.github.astrapi69.chareditor.ApplicationModelBean;
 import io.github.astrapi69.chareditor.Messages;
 import lombok.AccessLevel;
@@ -19,14 +18,17 @@ import java.awt.event.KeyEvent;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MainPanel extends BasePanel<ApplicationModelBean> {
 
-    public static final String ISO_8859_7 = Messages
-            .getString("TransformerJFrame.iso8859_7"); //$NON-NLS-1$
-
     public static final String[] columnNames = {
-            Messages.getString("TransformerJFrame.column.greek"), Messages.getString("TransformerJFrame.column.latin"), Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            Messages.getString("TransformerJFrame.column"),
+            Messages.getString("TransformerJFrame.column.latin"),
+            Messages.getString("TransformerJFrame.column.htmlentitys"),
+            "Representation"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
     public static final String[] armenianColumnNames = {
-            Messages.getString("TransformerJFrame.column.armenian"), Messages.getString("TransformerJFrame.column.latin"), Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            Messages.getString("TransformerJFrame.column.armenian"),
+            Messages.getString("TransformerJFrame.column.latin"),
+            Messages.getString("TransformerJFrame.column.htmlentitys"),
+            "Representation"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
     // JTextAreas and JTable
     JTextArea jtaPreview;
@@ -34,8 +36,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
     JTextArea jtaHtmlEntitys;
 
     JTextArea jtaUnicode;
-
-    JTextArea jtaIso8859_7;
 
     JTextArea jtaInput;
 
@@ -45,8 +45,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
 
     JPanel panelJTAUnicode;
 
-    JPanel panelJTAIso8859_7;
-
     JTable jTableAlphabet;
 
     // JLabels
@@ -55,8 +53,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
     JLabel labelHtmlEntitys;
 
     JLabel labelUnicode;
-
-    JLabel labelIso8859_7;
 
     JLabel labelPreview;
 
@@ -75,8 +71,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
 
     JScrollPane jscrollPanejtaUnicode;
 
-    JScrollPane jscrollPanejtaIso8859_7;
-
     // Insets
     Insets oneInsent;
 
@@ -87,8 +81,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
 
     JButton jbutInputTACopyHtmlEntitys2Clipboard;
 
-    JButton jbutInputTACopyIso_8859_7_ToClipboard;
-
     JButton jbutInputTACopyIso_GreekChars_ToClipboard;
 
     JButton jbutInputTAClear;
@@ -98,8 +90,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
     JButton jbutHtmlEntitysTATransform;
 
     JButton jbutUnicodeTATransform;
-
-    JButton jbutIso8859_7TATransform;
 
     public MainPanel() {
     }
@@ -146,9 +136,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
 
         panelJTAUnicode = newPanelWithScrollPane(
                 newLabelWithButtonPanel(labelUnicode, jbutUnicodeTATransform), jscrollPanejtaUnicode);
-
-        panelJTAIso8859_7 = newPanelWithScrollPane(
-                newLabelWithButtonPanel(labelIso8859_7, jbutIso8859_7TATransform), jscrollPanejtaIso8859_7);
     }
 
     private void createJTabbedPane() {
@@ -156,7 +143,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
         jtpOutput
                 .addTab(
                         Messages.getString("TransformerJFrame.htmlentitys"), panelJTAHtmlEntitys); //$NON-NLS-1$
-        jtpOutput.addTab(ISO_8859_7, panelJTAIso8859_7);
         jtpOutput
                 .addTab(
                         Messages.getString("TransformerJFrame.unicode"), panelJTAUnicode); //$NON-NLS-1$
@@ -315,20 +301,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
         gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.fill = GridBagConstraints.NONE;
         gbc.insets = twoInsent;
-        gbc.gridx = 5;
-        gbc.gridy = 5;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weighty = 0;
-        gbc.weightx = 0;
-        gbc.ipadx = 1;
-        gbc.ipady = 1;
-        gbl.setConstraints(jbutInputTACopyIso_8859_7_ToClipboard, gbc);
-        this.add(jbutInputTACopyIso_8859_7_ToClipboard);
-
-        gbc.anchor = GridBagConstraints.NORTHWEST;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = twoInsent;
         gbc.gridx = 6;
         gbc.gridy = 5;
         gbc.gridwidth = 1;
@@ -372,7 +344,7 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
     private void createAllButtons() {
         // Buttons
         jbutPreviewTATransform = new JButton(Messages
-                .getString("TransformerJFrame.button.transform.greekchars")); //$NON-NLS-1$
+                .getString("TransformerJFrame.button.transform.chars")); //$NON-NLS-1$
         jbutPreviewTATransform.setToolTipText(Messages
                 .getString("TransformerJFrame.7")); //$NON-NLS-1$
         jbutPreviewTATransform.addActionListener(new PreviewTATransformAction("PreviewTATransformAction"));
@@ -388,13 +360,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
                 .setToolTipText(Messages
                         .getString("TransformerJFrame.button.copy.htmlentitys.to.clipboard.tooltip")); //$NON-NLS-1$
         jbutInputTACopyHtmlEntitys2Clipboard.addActionListener(new InputTACopyHtmlEntitys2ClipboardAction("InputTACopyHtmlEntitys2ClipboardAction"));
-        jbutInputTACopyIso_8859_7_ToClipboard = new JButton(
-                Messages
-                        .getString("TransformerJFrame.button.copy.iso8859_7.to.clipboard")); //$NON-NLS-1$
-        jbutInputTACopyIso_8859_7_ToClipboard
-                .setToolTipText(Messages
-                        .getString("TransformerJFrame.button.copy.iso8859_7.to.clipboard.tooltip")); //$NON-NLS-1$
-        jbutInputTACopyIso_8859_7_ToClipboard.addActionListener(new InputTACopyIso_8859_7_ToClipboardAction("InputTACopyIso_8859_7_ToClipboardAction"));
         jbutInputTAClear = new JButton(Messages
                 .getString("TransformerJFrame.button.clear")); //$NON-NLS-1$
         jbutInputTAClear.setToolTipText(Messages
@@ -415,18 +380,10 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
                         .getString("TransformerJFrame.button.transform.unicode.tooltip")); //$NON-NLS-1$
         jbutUnicodeTATransform.addActionListener(new UnicodeTATransformAction("UnicodeTATransformAction"));
 
-
-        jbutIso8859_7TATransform = new JButton(Messages
-                .getString("TransformerJFrame.button.transform.iso8859_7")); //$NON-NLS-1$
-        jbutIso8859_7TATransform
-                .setToolTipText(Messages
-                        .getString("TransformerJFrame.button.transform.iso8859_7.tootip")); //$NON-NLS-1$
-        jbutIso8859_7TATransform.addActionListener(new Iso8859_7TATransformAction("Iso8859_7TATransformAction"));
-
         jbutInputTACopyIso_GreekChars_ToClipboard = new JButton(Messages
-                .getString("TransformerJFrame.button.transform.greek.chars.to.clipboard"));
+                .getString("TransformerJFrame.button.transform.chars.to.clipboard"));
         jbutInputTACopyIso_GreekChars_ToClipboard.setToolTipText(Messages
-                .getString("TransformerJFrame.button.transform.greek.chars.to.clipboard.tooltip"));
+                .getString("TransformerJFrame.button.transform.chars.to.clipboard.tooltip"));
         String acInputTACopyIso_GreekChars_ToClipboardAction = "InputTACopyIso_GreekChars_ToClipboardAction";
         InputTACopyIso_GreekChars_ToClipboardAction inputTACopyIso_GreekChars_ToClipboardAction =
                 new InputTACopyIso_GreekChars_ToClipboardAction(acInputTACopyIso_GreekChars_ToClipboardAction);
@@ -444,7 +401,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
         jscrollPanejtaPreview = new JScrollPane(jtaPreview);
         jscrollPanejtaHtmlEntitys = new JScrollPane(jtaHtmlEntitys);
         jscrollPanejtaUnicode = new JScrollPane(jtaUnicode);
-        jscrollPanejtaIso8859_7 = new JScrollPane(jtaIso8859_7);
         jscrollPanejtaInput = new JScrollPane(jtaInput);
     }
 
@@ -472,17 +428,10 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
         jtaInput.setLineWrap(true);
         jtaInput.setWrapStyleWord(true);
         jtaInput.setEditable(true);
-
-        // JTextArea Output for ISO-8859-7:
-        jtaIso8859_7 = new JTextArea(5, 50);
-        jtaIso8859_7.setLineWrap(true);
-        jtaIso8859_7.setWrapStyleWord(true);
-        jtaIso8859_7.setEditable(true);
-
     }
 
     private void createJTable() {
-        jTableAlphabet = new JTable(ArmenianAlphabet.armenianAlphabet, armenianColumnNames);
+        jTableAlphabet = new JTable(ArmenianAlphabet.alphabet, armenianColumnNames);
     }
 
     private void createAllJLabels() {
@@ -496,8 +445,6 @@ public class MainPanel extends BasePanel<ApplicationModelBean> {
                 .getString("TransformerJFrame.label.output.htmlentitys")); //$NON-NLS-1$
         labelUnicode = new JLabel(Messages
                 .getString("TransformerJFrame.label.output.unicode")); //$NON-NLS-1$
-        labelIso8859_7 = new JLabel(Messages
-                .getString("TransformerJFrame.label.output.iso8859_7")); //$NON-NLS-1$
         labelPreview = new JLabel(Messages
                 .getString("TransformerJFrame.label.preview")); //$NON-NLS-1$
     }

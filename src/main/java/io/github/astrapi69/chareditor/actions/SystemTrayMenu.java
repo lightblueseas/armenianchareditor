@@ -2,7 +2,6 @@ package io.github.astrapi69.chareditor.actions;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.swing.actions.OpenBrowserAction;
-import gr.frame.MainFrame;
 import io.github.astrapi69.chareditor.util.Constants;
 
 import java.awt.AWTException;
@@ -15,10 +14,6 @@ import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-
-//import net.sourceforge.jaulp.lang.ClassUtils;
-//import net.sourceforge.jaulp.swing.actions.OpenBrowserAction;
-
 
 public class SystemTrayMenu {
 

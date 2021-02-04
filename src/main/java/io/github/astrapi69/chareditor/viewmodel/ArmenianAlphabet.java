@@ -5,12 +5,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ArmenianAlphabet {
-    public static Map<String, CharacterInfo> characterInfoMap(){
-        Map<String, CharacterInfo> characterInfoMap = new LinkedHashMap<>();
-        Arrays.stream(armenianAlphabet).forEach(entry -> );
+
+    public static void main(String[] args) {
+        Map<String, CharacterInfo> characterInfos = newCharacterInfoMap();
+        System.out.println(characterInfos);
     }
 
-    public static final String[][] armenianAlphabet = {
+
+    public static final String[][] alphabet = {
             {         "\u0531", "A", "&#1329;", "Ա", "ARMENIAN CAPITAL LETTER AYB"   },
             {         "\u0532", "B", "&#1330;", "Բ", "ARMENIAN CAPITAL LETTER BEN"    },
             {         "\u0533", "G", "&#1331;", "Գ", "ARMENIAN CAPITAL LETTER GIM"     },
@@ -52,12 +54,12 @@ public class ArmenianAlphabet {
             {         "\u0555", "O", "&#1365;", "Օ", "ARMENIAN CAPITAL LETTER OH"     },
             {         "\u0556", "V", "&#1366;", "Ֆ", "ARMENIAN CAPITAL LETTER FEH"     },
             {         "\u0559", "", "&#1369;", "ՙ", "ARMENIAN MODIFIER LETTER LEFT HALF RING"     },
-            {         "\u055A", "", "&#1370;", "՚", "ARMENIAN APOSTROPHE"    },
-            {         "\u055B", "", "&#1371;", "՛", "ARMENIAN EMPHASIS MARK"    },
+            {         "\u055A", "՚", "&#1370;", "՚", "ARMENIAN APOSTROPHE"    },
+            {         "\u055B", "՛", "&#1371;", "՛", "ARMENIAN EMPHASIS MARK"    },
             {         "\u055C", "", "&#1372;", "՜", "ARMENIAN EXCLAMATION MARK"    },
-            {         "\u055D", "", "&#1362;", "՝", "ARMENIAN COMMA"    },
-            {         "\u055E", "", "&#1363;", "՞", "ARMENIAN QUESTION MARK"    },
-            {         "\u055F", "", "&#1364;", "՟", "ARMENIAN ABBREVIATION MARK"    },
+            {         "\u055D", ",", "&#1373;", "՝", "ARMENIAN COMMA"    },
+            {         "\u055E", "?", "&#1374;", "՞", "ARMENIAN QUESTION MARK"    },
+            {         "\u055F", "", "&#1375;", "՟", "ARMENIAN ABBREVIATION MARK"    },
 
             {         "\u0561", "a", "&#1377;", "ա", "ARMENIAN SMALL LETTER AYB"    },
             {         "\u0562", "b", "&#1378;", "բ", "ARMENIAN SMALL LETTER BEN"    },
@@ -100,8 +102,25 @@ public class ArmenianAlphabet {
             {         "\u0585", "o", "&#1413;", "օ", "ARMENIAN SMALL LETTER OH"    },
             {         "\u0586", "v", "&#1414;", "ֆ", "ARMENIAN SMALL LETTER FEH"    },
             {         "\u0587", "u", "&#1415;", "և", "ARMENIAN SMALL LIGATURE ECH YIWN"    },
-            {         "\u0589", "", "&#1417;", "։", "ARMENIAN FULL STOP"    },
-            {         "\u058A", "", "&#1410;", "֊", "ARMENIAN HYPHEN"    },
-            {         "\u058F", "O", "&#1410;", "֏", "ARMENIAN DRAM SIGN"    },
+            {         "\u0589", ".", "&#1417;", "։", "ARMENIAN FULL STOP"    },
+            {         "\u058A", "֊", "&#1418;", "֊", "ARMENIAN HYPHEN"    },
+            {         "\u058F", "O", "&#1423;", "֏", "ARMENIAN DRAM SIGN"    },
     };
+
+    public static Map<String, CharacterInfo> newCharacterInfoMap(){
+        Map<String, CharacterInfo> characterInfoMap = new LinkedHashMap<>();
+        String[][] alphabet = ArmenianAlphabet.alphabet;
+        Arrays.stream(alphabet).forEach(entry -> characterInfoMap.put(entry[0], newCharacterInfo(entry)));
+        return characterInfoMap;
+    }
+
+    public static CharacterInfo newCharacterInfo(String[] characterInfoArray) {
+        return CharacterInfo.builder()
+                .unicode(characterInfoArray[0])
+                .latin(characterInfoArray[1])
+                .htmlEntity(characterInfoArray[2])
+                .representation(characterInfoArray[3])
+                .description(characterInfoArray[4])
+                .build();
+    }
 }

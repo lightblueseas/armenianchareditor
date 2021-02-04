@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import gr.frame.MainFrame;
+import io.github.astrapi69.chareditor.SpringBootSwingApplication;
 import io.github.astrapi69.chareditor.filefilter.GRCFilter;
 import io.github.astrapi69.chareditor.util.Constants;
 
@@ -28,17 +28,16 @@ public class OpenFileAction extends AbstractAction implements Constants {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainFrame frame = MainFrame.getInstance();
+		SpringBootSwingApplication frame = SpringBootSwingApplication.getInstance();
         JTextArea textAreaInput = frame.getMainPanel().getJtaInput();
         JTextArea textAreaPreview = frame.getMainPanel().getJtaPreview();
         JTextArea textAreaHtmlEntitys = frame.getMainPanel().getJtaHtmlEntitys();
-        JTextArea textAreaIso_8859_7 =frame.getMainPanel().getJtaIso8859_7();
-        openFile(textAreaInput, textAreaPreview, textAreaHtmlEntitys, textAreaIso_8859_7);
+        openFile(textAreaInput, textAreaPreview, textAreaHtmlEntitys);
 
 	}
 
 
-	private void openFile(JTextArea textAreaInput, JTextArea textAreaPreview, JTextArea textAreaHtmlEntitys, JTextArea textAreaIso_8859_7) {
+	private void openFile(JTextArea textAreaInput, JTextArea textAreaPreview, JTextArea textAreaHtmlEntitys) {
 
 		MainFrame frame = MainFrame.getInstance();
 		GRCFilter filter = new GRCFilter();
@@ -54,7 +53,6 @@ public class OpenFileAction extends AbstractAction implements Constants {
 		        textAreaPreview.setText(model.getInputFromTAPreview());
 		        textAreaInput.setText(model.getInputFromTAInput());
 		        textAreaHtmlEntitys.setText(model.getInputFromTAHtmlEntitys());
-		        textAreaIso_8859_7.setText(model.getInputFromTAIso_8859_7());
 		        ois.close();
 		    } catch (IOException e1) {
 		        System.err.println("Error by opening the editors.");

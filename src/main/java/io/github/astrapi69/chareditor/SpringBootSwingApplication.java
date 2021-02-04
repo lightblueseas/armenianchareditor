@@ -86,7 +86,6 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 			Model<SplashScreenModelBean> modelBeanModel = BaseModel.of(splashScreenModelBean);
 				new BaseSplashScreen(null, modelBeanModel);
 		}).start();
-
 		ThrowableExtensions.toRuntimeExceptionIfNeeded(i -> Thread.sleep(splashScreenModelBean.getShowTime()));
 
 		ConfigurableApplicationContext ctx = new SpringApplicationBuilder(
@@ -96,6 +95,11 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 		EventQueue.invokeLater(() -> {
 			SpringBootSwingApplication ex = ctx.getBean(SpringBootSwingApplication.class);
 			ex.setVisible(true);
+
+			if (instance == null)
+			{
+				instance = ex;
+			}
 		});
 	}
 
@@ -106,7 +110,7 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 			.getString("TransformerJFrame.iso8859_7"); //$NON-NLS-1$
 
 	public static final String[] columnNames = {
-			Messages.getString("TransformerJFrame.column.greek"),
+			Messages.getString("TransformerJFrame.column"),
 			Messages.getString("TransformerJFrame.column.latin"),
 			Messages.getString("TransformerJFrame.column.htmlentitys"), ISO_8859_7}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
@@ -122,7 +126,7 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 	protected File newConfigurationDirectory(final @NonNull String parent,
 		final @NonNull String child)
 	{
-		String configurationDirectoryName = "greekchareditor";
+		String configurationDirectoryName = "chareditor";
 		File applicationConfigurationDirectory = new File(
 			super.newConfigurationDirectory(parent, child), configurationDirectoryName);
 		if (!applicationConfigurationDirectory.exists())
@@ -159,12 +163,18 @@ public class SpringBootSwingApplication extends ApplicationPanelFrame<Applicatio
 	@Override
 	protected LookAndFeels newLookAndFeels()
 	{
-		return LookAndFeels.GTK;
+		LookAndFeels metal = LookAndFeels.METAL;
+
+		return metal;
 	}
 
 
 	@Override
 	protected BasePanel<ApplicationModelBean> newMainComponent() {
 		return new MainPanel();
+	}
+
+	public MainPanel getMainPanel(){
+		return (MainPanel) getMainComponent();
 	}
 }
